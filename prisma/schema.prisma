@@ -1,0 +1,155 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name     String @unique
+  email    String @unique
+  password String
+
+
+  imageUrl String?
+
+  //СОЦ СЕТИ РЕГИСТРАЦИЯ
+  provider   String?
+  providerId String?
+  //СОЦ СЕТИ РЕГИСТРАЦИЯ
+  Cart             Cart?
+  Order            Order[]
+  VerificationCode VerificationCode?
+
+  role UserRole @default(USER)
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  items Item[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt 
+}
+
+model Item {
+  id         Int      @id @default(autoincrement())
+
+  name       String
+  price      Int
+  imageUrl String?
+
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cartItems CartItem[]
+}
+
+model Cart {
+  id          Int  @id @default(autoincrement())
+
+  user        User? @relation(fields: [userId], references: [id])
+  userId      Int?  @unique
+
+  totalAmount Int  @default(0)
+
+  token String?
+
+  // status  String
+  // address String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items CartItem[]
+}
+
+model CartItem {
+  id       Int  @id @default(autoincrement())
+
+  cart     Cart @relation(fields: [cartId], references: [id])
+  cartId   Int
+
+  item     Item @relation(fields: [itemId], references: [id])
+  itemId   Int
+
+  quantity Int @default(1)
+
+// user User @relation(fields: [userId], references: [id])
+//   userId Int
+
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Order {
+  id     Int  @id @default(autoincrement())
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  // token String?
+
+  totalAmount Int
+  status      OrderStatus
+  paymentId   String?
+  // address String
+
+  // OrderItem OrderItem[]
+
+  items Json
+
+  fullName String
+  email    String
+  phone    String
+  address  String
+  comment  String?
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model VerificationCode {
+  id Int @id @default(autoincrement())
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
+
+  code  String
+  email String
+
+  // expiredAt DateTime @default(now())
+  createdAt DateTime @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  // CONFIRMED
+  // DELIVERED
+  SUCCEEDED
+  CANCELLED
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
