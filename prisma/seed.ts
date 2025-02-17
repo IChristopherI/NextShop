@@ -113,13 +113,13 @@ async function main() {
         data: [
             {
                 
-                itemId: 61,
                 cartId: 1,
+                itemId: 61,
                 quantity: 1,
             },
             {
-                itemId: 62,
                 cartId: 1,
+                itemId: 62,
                 quantity: 1,
             },
 

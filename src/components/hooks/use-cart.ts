@@ -1,6 +1,7 @@
 import React from "react";
 import { CartStateItem } from "@/lib/get-cart-detail";
 import { useCartStore } from "../shared/store/cart";
+import { CreateCartItem } from "../shared/services/Cart_dto";
 
 type ReturnProps = {
     loading: boolean;
@@ -9,6 +10,7 @@ type ReturnProps = {
     fetchCartItems: () => void;
     updateCartItemQuantity:(id:number, quantity:number) => void;
     removeCartItem: (id:number) => void;
+    addOnclickCartItem:(values:CreateCartItem) => void;
 }
 
 export const useCart = (): ReturnProps => {

@@ -13,7 +13,6 @@ export type CartStateItem = {
     id: number;
     imageUrl: string | null;
     price: number;
-    categoryId: number;
     quantity: number;
 }
 
@@ -28,7 +27,6 @@ export const getCartDetail = (data: CartDTO): ReturnProps => {
         name: item.item.name,
         imageUrl: item.item.imageUrl,
         price: item.item.price,
-        categoryId: item.item.categoryId,
         quantity:item.quantity,
     }));
     return {items, totalAmount:data.totalAmount}

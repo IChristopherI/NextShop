@@ -2,6 +2,7 @@ import React from "react";
 import Header from "@/components/shared/MainComponent/Header/header";
 import "../globals.css";
 import { ThemeProvider } from "./ThemeProvider";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function HomeLayout({children,modal}
@@ -14,6 +15,7 @@ export default function HomeLayout({children,modal}
           <Header />
           {children}
           {modal}
+          <Toaster/>
         </main>
       </body>
       {/* </ThemeProvider> */}
