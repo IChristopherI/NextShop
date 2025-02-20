@@ -6,10 +6,11 @@ import CartDrawerItem from './cart-drawer-item';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useCart } from '../hooks/use-cart';
+import Link from 'next/link';
 
 const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
-    const { items, updateCartItemQuantity, removeCartItem } = useCart();
+    const { items, totalAmount, updateCartItemQuantity, removeCartItem,loading } = useCart();
 
     const onClickCountButton = (id: number, quantity: number, type: 'minus' | 'plus') => {
         const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
@@ -36,8 +37,9 @@ const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                                     imageUrl={item.imageUrl ?? ""}
                                     quantity={item.quantity}
                                     value={item.price}
-                                    // onClickCountButton={(type) =>{onClickCountButton(item.id, item.quantity, type)}}
-                                    // onClickRemove={() => removeCartItem(item.id)}
+                                    onClickCountButton={(type) =>{onClickCountButton(item.id, item.quantity, type)}}
+                                    onClickRemove={() => removeCartItem(item.id)}
+                                    loading={loading}
                                 />
                             ))}
                         </div>
@@ -48,12 +50,14 @@ const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                                         Итого
                                         <div className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2" />
                                     </span>
-                                    <span className="font-bold text-lg">3123 ₽</span>
+                                    <span className="font-bold text-lg">{totalAmount}</span>
                                 </div>
+                                <Link href='/checkout'>
                                 <Button type='submit' className=' w-full'>
                                     Оформить заказ
                                     <ArrowRight />
                                 </Button>
+                                </Link>
                             </div>
                         </SheetFooter>
                     </div>

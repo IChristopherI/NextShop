@@ -4,7 +4,6 @@ import ProductList from "@/components/shared/MainComponent/Item/Product-group-li
 import Sort from "@/components/shared/sort";
 import { PrismaClient } from "@prisma/client";
 import React from "react";
-import { ModeToggle } from "./SwitchTheme";
 
 
 
@@ -20,8 +19,8 @@ export default async function Home() {
  
   return (
     <>
-        <div className="sticky top-0   z-10   m-4   ">
-          <div className=" flex items-center  justify-between mr-auto ml-auto max-w-[1480px]">
+        <div className="sticky top-0   z-10      ">
+          <div className=" flex items-center  h-[50px] justify-between  px-[300px] bg-slate-100">
           <Categories categories={Items} />
           <Sort />
           </div>
@@ -49,64 +48,9 @@ export default async function Home() {
                 ))
               )
             }
-
-
-                                       
           </div>
         </div>
       </div>
     </>
   );
 }
-
-
-
-// {
-//   id: 1,
-//   name: 'SEGA Project Sekai',
-//   price: 450,
-//   imageUrl: 'https://murasaki.store/image/cache/catalog/figures/sega/sega-234-1-742x1000.jpg'
-
-// },
-// {
-//   id: 2,
-//   name: 'SEGA Project Sekai',
-//   price: 450,
-//   imageUrl: 'https://murasaki.store/image/cache/catalog/figures/sega/sega-234-1-742x1000.jpg'
-
-// },
-// {
-//   id: 3,
-//   name: 'SEGA Project Sekai',
-//   price: 450,
-//   imageUrl: 'https://murasaki.store/image/cache/catalog/figures/sega/sega-234-1-742x1000.jpg'
-
-// },
-// {
-//   id: 4,
-//   name: 'SEGA Project Sekai',
-//   price: 450,
-//   imageUrl: 'https://murasaki.store/image/cache/catalog/figures/sega/sega-234-1-742x1000.jpg'
-
-// },
-// {
-//   id: 5,
-//   name: 'SEGA Project Sekai',
-//   price: 450,
-//   imageUrl: 'https://murasaki.store/image/cache/catalog/figures/sega/sega-234-1-742x1000.jpg'
-
-// },
-// {
-//   id: 6,
-//   name: 'SEGA Project Sekai',
-//   price: 450,
-//   imageUrl: 'https://murasaki.store/image/cache/catalog/figures/sega/sega-234-1-742x1000.jpg'
-
-// },
-// {
-//   id: 7,
-//   name: 'SEGA Project Sekai',
-//   price: 450,
-//   imageUrl: 'https://murasaki.store/image/cache/catalog/figures/sega/sega-234-1-742x1000.jpg'
-
-// },

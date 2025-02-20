@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from 'crypto'
 import { CreateCartItem } from "@/components/shared/services/Cart_dto";
 import { findOrCreateCart } from "../../../lib/find-or-create-cart";
+import { CalcTotalCart } from "@/lib/calculate-cart-totalprice";
+import { updateCartItemTotal } from "@/lib/update-cart-item-total-amount";
 
 export async function GET(req: NextRequest) {
     const prisma = new PrismaClient();
@@ -31,6 +33,7 @@ export async function GET(req: NextRequest) {
         if (!userCart) {
             return NextResponse.json({ items: [], total: 0 });
         }
+        
         return NextResponse.json(userCart);
 
     } catch (e) {
@@ -74,8 +77,9 @@ export async function POST(req: NextRequest) {
                 },
             });
         }
+        const updatedCartPrice = await updateCartItemTotal(token);
 
-        const response = NextResponse.json(cartItem);
+        const response = NextResponse.json(updatedCartPrice);
         response.cookies.set('cartToken', token);
         return response;
 

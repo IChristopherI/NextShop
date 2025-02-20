@@ -11,7 +11,7 @@ const Filters: React.FC<FiltersProps> = ({ className }) => {
     return (
         <div className={cn('p-1   rounded-lg', className)}>
             <div className='relative mb-5 gap-5'>
-                <h1 className='text-center font-bold text-xl mb-4'>Фильтры</h1>
+                <h1 className='text-center font-bold text-xl mb-4'>Фильтрация</h1>
                 <div className='flex flex-col gap-1'>
                 <FilterCheckBox text='Text 1' value='1' />
                 <FilterCheckBox text='Text 2' value='2' />

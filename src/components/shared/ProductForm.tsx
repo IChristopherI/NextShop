@@ -1,14 +1,16 @@
 import React from 'react';
 import { CloseModal } from './CloseModal';
+import Link from 'next/link';
 
 interface Props {
+  id:string;
     imageUrl: string;
     name: string;
     price: number;
     onSubmit?: VoidFunction;
 }
 
-const ProductForm: React.FC<Props> = ({ imageUrl,name,price,onSubmit }) => {
+const ProductForm: React.FC<Props> = ({ id,imageUrl,name,price,onSubmit }) => {
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
     <div className='bg-white rounded-lg p-6 w-full max-w-3xl shadow-lg flex'>
@@ -26,7 +28,7 @@ const ProductForm: React.FC<Props> = ({ imageUrl,name,price,onSubmit }) => {
           </div>
         </div>
         <div className='flex justify-end items-center mt-auto'>
-          <button  onClick={ onSubmit } className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 '>Добавить в корзину | {price} $</button>
+          <button   className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 '>Перейти к товару</button>
         </div>
       </div>
     </div>

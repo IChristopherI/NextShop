@@ -26,10 +26,10 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
     }
     return (
         <>
-            <div className='inline-flex items-center gap-3 bg-gray-10 p-1 rounded-2xl '>
+            <div className='inline-flex items-center gap-3  p-1    '>
                 {categories.map((name, index) => (
-                    <Link href={`/#${name.name}`} key={index} className={cn('flex items-center font-bold h-8 rounded-2xl px-5',
-                        activeIndex === index ? 'bg-primary text-white' : 'bg-gray-100 text-black')}>
+                    <Link href={`/#${name.name}`} key={index} className={cn('flex items-center font-bold h-8  px-5',
+                        activeIndex === index ? ' text-primary' : ' text-black')}>
                         <button onClick={() => handleScroll(name.name, index)}>
                             <p>{name.name}</p>
                         </button>

@@ -9,6 +9,7 @@ export interface CartDTO extends Cart {
 };
 
 export type CartStateItem = {
+    disabled: boolean | undefined;
     name: string;
     id: number;
     imageUrl: string | null;

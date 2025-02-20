@@ -13,6 +13,7 @@
     "prisma:seed": "npx ts-node prisma/seed.ts"
   },
   "dependencies": {
+    "@hookform/resolvers": "^4.1.0",
     "@prisma/client": "^6.3.1",
     "@radix-ui/react-checkbox": "^1.1.3",
     "@radix-ui/react-dialog": "^1.1.5",
@@ -30,14 +31,18 @@
     "crypto": "^1.0.1",
     "lucide-react": "^0.474.0",
     "next": "^15.1.7",
+    "next-auth": "^4.24.11",
     "next-themes": "^0.4.4",
+    "nextjs-toploader": "^3.7.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
     "react-hot-toast": "^2.5.2",
     "react-use": "^17.6.0",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
+    "zod": "^3.24.2",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
