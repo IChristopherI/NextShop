@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 import crypto from 'crypto'
 import { CreateCartItem } from "@/components/shared/services/Cart_dto";
 import { findOrCreateCart } from "../../../lib/find-or-create-cart";
-import { CalcTotalCart } from "@/lib/calculate-cart-totalprice";
 import { updateCartItemTotal } from "@/lib/update-cart-item-total-amount";
 
 export async function GET(req: NextRequest) {

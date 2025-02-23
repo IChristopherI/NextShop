@@ -7,8 +7,8 @@ CREATE TYPE "UserRole" AS ENUM ('ADMIN', 'USER');
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "imageUrl" TEXT,
     "provider" TEXT,
@@ -24,6 +24,8 @@ CREATE TABLE "User" (
 CREATE TABLE "Category" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -32,9 +34,15 @@ CREATE TABLE "Category" (
 CREATE TABLE "Item" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
-    "categoryId" INTEGER NOT NULL,
+    "price" INTEGER NOT NULL,
     "imageUrl" TEXT,
+    "articule" INTEGER,
+    "imagePackage" TEXT[],
+    "productSize" TEXT,
+    "detail" TEXT,
+    "brand" TEXT,
+    "character" TEXT,
+    "categoryId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -44,8 +52,9 @@ CREATE TABLE "Item" (
 -- CreateTable
 CREATE TABLE "Cart" (
     "id" SERIAL NOT NULL,
-    "userId" INTEGER NOT NULL,
+    "userId" INTEGER,
     "totalAmount" INTEGER NOT NULL DEFAULT 0,
+    "token" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -57,7 +66,7 @@ CREATE TABLE "CartItem" (
     "id" SERIAL NOT NULL,
     "cartId" INTEGER NOT NULL,
     "itemId" INTEGER NOT NULL,
-    "quantity" INTEGER NOT NULL,
+    "quantity" INTEGER NOT NULL DEFAULT 1,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -67,9 +76,10 @@ CREATE TABLE "CartItem" (
 -- CreateTable
 CREATE TABLE "Order" (
     "id" SERIAL NOT NULL,
-    "userId" INTEGER NOT NULL,
+    "userId" INTEGER,
+    "token" TEXT,
     "totalAmount" INTEGER NOT NULL,
-    "status" "OrderStatus" NOT NULL,
+    "status" "OrderStatus" NOT NULL DEFAULT 'PENDING',
     "paymentId" TEXT,
     "items" JSONB NOT NULL,
     "fullName" TEXT NOT NULL,
@@ -98,13 +108,7 @@ CREATE TABLE "VerificationCode" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_name_key" ON "User"("name");
-
--- CreateIndex
 CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Item_name_key" ON "Item"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Cart_userId_key" ON "Cart"("userId");
@@ -116,7 +120,7 @@ CREATE UNIQUE INDEX "VerificationCode_userId_key" ON "VerificationCode"("userId"
 ALTER TABLE "Item" ADD CONSTRAINT "Item_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Cart" ADD CONSTRAINT "Cart_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Cart" ADD CONSTRAINT "Cart_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CartItem" ADD CONSTRAINT "CartItem_cartId_fkey" FOREIGN KEY ("cartId") REFERENCES "Cart"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -125,7 +129,7 @@ ALTER TABLE "CartItem" ADD CONSTRAINT "CartItem_cartId_fkey" FOREIGN KEY ("cartI
 ALTER TABLE "CartItem" ADD CONSTRAINT "CartItem_itemId_fkey" FOREIGN KEY ("itemId") REFERENCES "Item"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "VerificationCode" ADD CONSTRAINT "VerificationCode_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

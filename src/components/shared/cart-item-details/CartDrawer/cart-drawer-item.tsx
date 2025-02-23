@@ -1,9 +1,9 @@
 import React from 'react';
-import { CartItemProps } from './cart-item-details/cart-item-types';
-import CartItemImage from './cart-item-details/cart-item-image';
-import CartItemInfo from './cart-item-details/cart-item-info';
-import { CartItemPrice } from './cart-item-details/cart-item-price';
-import CountButton from './quantity-count-button';
+import { CartItemProps } from '../cart-item-types';
+import CartItemImage from '../cart-item-image';
+import CartItemInfo from '../cart-item-info';
+import { CartItemPrice } from '../cart-item-price';
+import CountButton from '../../quantity-count-button';
 import { TrashIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 

@@ -6,13 +6,14 @@ import { Search } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import { useClickAway, useDebounce } from 'react-use';
 import { search } from '../../services/search';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 interface InputSearchProps {
     className?: string;
 }
 
 const InputSearch: React.FC<InputSearchProps> = ({ className }) => {
-
     const [searchQuery, setSearchQuery] = useState('');
     const [items, setItems] = useState<Item[]>([]);
 
@@ -47,16 +48,18 @@ const InputSearch: React.FC<InputSearchProps> = ({ className }) => {
             </div>
 
             <div className={cn(
-                    "absolute top-24 left-0 right-0 z-40 bg-white shadow-lg rounded-md border border-gray-200",
-                    "p-4  max-w-lg mx-auto transition-opacity duration-300",
-                    "max-h-110 overflow-y-auto",
-                    focused ? "opacity-100 visible" : "opacity-0 invisible"
-                )}>
+                "absolute top-24 left-0 right-0 z-40 bg-white shadow-lg rounded-md border border-gray-200",
+                "p-4  max-w-lg mx-auto  duration-300",
+                "max-h-110 overflow-y-auto",
+                focused ? "opacity-100 visible " : "opacity-0 invisible "
+            )}>
                 {items.map((item) => (
-                    <div key={item.id} className='flex  items-center gap-5 mb-5'>
-                        <img className='w-[50px]' src={item.imageUrl ?? ''} />
-                        <p>{item.name}</p>
-                    </div>
+                    <Link href={`/product/${item.id}`} key={item.id}>
+                        <div className='flex  items-center gap-5 mb-5 hover:bg-slate-100'>
+                            <img className='w-[50px]  rounded-sm' src={item.imageUrl ?? ''} />
+                            <p>{item.name}</p>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </>

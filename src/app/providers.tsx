@@ -8,10 +8,10 @@ import NextTopLoader from 'nextjs-toploader';
 const Provider: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <NextTopLoader />
-      {/* <SessionProvider> */}
+      <NextTopLoader  height={5} color='purple'/>
+      <SessionProvider>
         {children}
-      {/* </SessionProvider> */}
+     </SessionProvider>
     </>
   );
 };

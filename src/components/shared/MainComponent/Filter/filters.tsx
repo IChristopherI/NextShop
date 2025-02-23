@@ -9,13 +9,13 @@ interface FiltersProps {
 
 const Filters: React.FC<FiltersProps> = ({ className }) => {
     return (
-        <div className={cn('p-1   rounded-lg', className)}>
+        <div className={cn('p-1  mt-14  rounded-lg', className)}>
             <div className='relative mb-5 gap-5'>
                 <h1 className='text-center font-bold text-xl mb-4'>Фильтрация</h1>
                 <div className='flex flex-col gap-1'>
-                <FilterCheckBox text='Text 1' value='1' />
-                <FilterCheckBox text='Text 2' value='2' />
-                <FilterCheckBox text='Text 3' value='3' />
+                <FilterCheckBox text='Action figures' value='1' />
+                <FilterCheckBox text='For Home' value='2' />
+                <FilterCheckBox text='Statues' value='3' />
                 </div>
             </div>
             <div>

@@ -1,7 +1,10 @@
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogFooter, DialogHeader } from '@/components/ui/dialog';
 
-import React from 'react';
+import React, { useState } from 'react';
+import LoginForm from './validation/login-form';
+import { DialogTitle } from '@radix-ui/react-dialog';
+import RegisterForm from './validation/register-form';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   open: boolean;
@@ -9,18 +12,31 @@ interface Props {
   onClose: () => void;
 }
 
-const AuthModal: React.FC<Props> = ({ className, open,onClose  }) => {
+const AuthModal: React.FC<Props> = ({ className, open, onClose }) => {
 
-const handleClose = () => {
-  onClose();
-}
+  const [type, setType] = useState<'login' | 'register'>('login');
+
+  const onSwitchType = () => {
+    setType(type === 'login' ? 'register' : 'login')
+  }
+
+  const handleClose = () => {
+    onClose();
+  }
 
   return (
-      <Dialog open={open} onOpenChange={onClose}>
-        <DialogContent className='w-[450px]'>
-         <Button>sad</Button>
-        </DialogContent>
-      </Dialog>
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogTitle></DialogTitle>
+      <DialogContent>
+        {type === 'login' ? (<LoginForm />) : (<RegisterForm />)}
+
+
+        <div className='flex items-center justify-center gap-3'>
+          {type === 'login' ? 'Нету аккаунта?' : 'Уже есть аккаунт?'}
+          <Button onClick={onSwitchType}>{type === 'login' ? 'Регистрация' : 'Войти'}</Button>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 

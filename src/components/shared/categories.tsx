@@ -7,11 +7,11 @@ import React, { useState } from 'react';
 
 
 interface CategoriesProps {
-    categories: Category[];
+    category: Category[];
 }
 
 
-const Categories: React.FC<CategoriesProps> = ({ categories }) => {
+const Categories: React.FC<CategoriesProps> = ({ category }) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -27,7 +27,7 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
     return (
         <>
             <div className='inline-flex items-center gap-3  p-1    '>
-                {categories.map((name, index) => (
+                {category.map((name, index) => (
                     <Link href={`/#${name.name}`} key={index} className={cn('flex items-center font-bold h-8  px-5',
                         activeIndex === index ? ' text-primary' : ' text-black')}>
                         <button onClick={() => handleScroll(name.name, index)}>

@@ -26,7 +26,7 @@ const onClickClear = () => {
     <>
       <div>
         <div className='relative '>
-          <Input className="h-12 text-md" {...register(name)} {...props} />
+          <Input className="h-12 text-md"  {...register(name)} {...props}  />
           <X className='absolute right-4 top-1/2 -translate-y-1/2 opacity-30 hover:opacity-100 cursor-pointer' onClick={onClickClear} />
         </div>
          {errorText && <div className='text-red-500'>{errorText}</div>}

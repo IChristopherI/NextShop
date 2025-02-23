@@ -6,30 +6,32 @@ import React from 'react';
 import { ShoppingCart, User } from 'lucide-react';
 import Link from 'next/link';
 import InputSearch from './input-type-search';
-import CartDrawer from '../../cart-drawer';
+import CartDrawer from '../../cart-item-details/CartDrawer/cart-drawer';
 import { useCart } from '@/components/hooks/use-cart';
 import AuthModal from '@/components/auth/auth-modal/auth-modal';
+import { useSession } from 'next-auth/react';
 
 
 interface HeaderProps {
     className?: string;
-    
+
 }
 
-export const Header: React.FC<HeaderProps> = ({ className}) => {
+export const Header: React.FC<HeaderProps> = ({ className }) => {
+    const { data: session } = useSession()
     const { items, totalAmount } = useCart();
     const [openModal, setOpenModal] = React.useState(false)
+
+
     return (
         <>
             <header className={cn('border border-b', className)}>
                 <div className='flex items-center justify-between py-5 mr-auto ml-auto max-w-7xl'>
-
                     {/*Logo */}
                     <Link href="/">
                         <div className='flex items-center gap-2'>
                             <div>
-                                <h1 className='font-bold'>Logo</h1>
-                                <p className=''>Title</p>
+                                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/SAKURA_internet_Logo.svg/2560px-SAKURA_internet_Logo.svg.png' className='w-[200px]' />
                             </div>
                         </div>
                     </Link>
@@ -37,12 +39,20 @@ export const Header: React.FC<HeaderProps> = ({ className}) => {
                         <InputSearch />
 
                     </div>
-                        <AuthModal open={openModal} onClose={() => setOpenModal(false)}/>
+                    <AuthModal open={openModal} onClose={() => setOpenModal(false)} />
                     <div className='flex items-center  gap-2'>
-                        <Button onClick={() => setOpenModal(true)} variant='default' className='flex items-center '>
-                            <User size={16} />
-                            <p>Войти</p>
-                        </Button>
+                        {!session ? (
+                            <Button onClick={() => setOpenModal(true)} variant='default' className='flex items-center '>
+                                <User size={16} />
+                                <p>Войти</p>
+                            </Button>
+                        ) : (
+                            <Button>
+                                <Link href='/profile'>
+                                    <p>Профиль | {session.user?.name}</p>
+                                </Link>
+                            </Button>
+                        )}
                         <div>
                             <CartDrawer>
                                 <Button className='group relative'>

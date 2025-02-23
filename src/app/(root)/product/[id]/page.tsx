@@ -1,44 +1,63 @@
+
+import ArrayImage from '@/components/shared/ArrayImage';
+import { Button } from '@/components/ui/button';
 import { PrismaClient } from '@prisma/client';
 import React from 'react';
 
 
 export default async function Page({ params: { id } }: { params: { id: string } }) {
     const prisma = new PrismaClient();
-    const product = await prisma.item.findFirst({
+    const item = await prisma.item.findFirst({
         where: { id: Number(id), },
-
     })
 
-    if (!product) {
-        return <div className='text-center text-red-500'>Product not found</div>
+    if (!item) {
+        return <div className='text-center text-2xl mt-10'>Product not found</div>;
     }
 
 
     return (
         <>
-            <div className='flex flex-col md:flex-row items-center md:items-start p-5 '>
-            <div className='w-[1280px] mx-auto flex'>
-                <div className=''>
-                    <img className='w-[300px] h-auto rounded-lg shadow-md' src={product.imageUrl ?? ''} alt={product.name} />
+            <div className='mx-auto mt-6 px-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                <div className='lg:col-span-1'>
+                    <ArrayImage item={item} />
                 </div>
-                <div className='w-[800px] md:ml-10 mt-5 md:mt-0'>
-                    <h1 className='text-3xl font-bold mb-4'>{product.name}</h1>
-                    <p className='text-xl text-green-700 mb-4'>{product.price} $</p>
-                    <div className='mb-4'>
-                        <p className='text-gray-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis esse illo molestiae, dolores delectus nobis.
-                            Labore quibusdam ea voluptatibus nemo aliquam maiores ad magni et, debitis odit sint illum iure!</p>
-                    </div>
-                    <div className='mb-4'>
-                        <p className='text-gray-500'>Category ID: {product.categoryId}</p>
-                    </div>
+                <div className='lg:col-span-1 flex flex-col justify-between'>
                     <div>
-                        <button className=' w-[100px] px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition duration-300'>Buy</button>
+                        <h1 className='text-4xl font-bold mb-4'>{item.name}</h1>
+                        <p className='text-gray-500 text-sm mb-2'>Category ID: {item.categoryId} | Article: {item.articule}</p>
+                        <p className='text-gray-700'>{item.detail}</p>
+                        <p className='text-3xl font-semibold text-gray-900 mt-4'>{item.price} $</p>
                     </div>
                 </div>
-
+                <div className='lg:col-span-1 bg-white p-6 rounded-lg shadow-md'>
+                    <h2 className='text-xl font-semibold mb-2'>Shipping</h2>
+                    <p className='text-gray-700'>Cost: <span className='font-bold'>$250</span></p>
+                    <p className='text-gray-700'>Delivery: 10-20 days</p>
+                    <p className='text-gray-700'>Courier: Nova, Meest, etc.</p>
+                    <div>
+                        <h2>Security & Privacy</h2>
+                        <p>We protect your privacy and keep your personal details safe and secure.</p>
+                        </div>
+                    <div className='mt-4'>
+                        <h3 className='text-lg font-semibold mb-2'>Quantity</h3>
+                        <input type='number' min='1' defaultValue='1' className='w-full p-2 border rounded-lg'/>
+                    </div>
+                    <div className='mt-6 flex flex-col gap-3'>
+                        <Button>Buy</Button>
+                        <Button>Add to cart</Button>
+                    </div>
+                </div>
             </div>
+            <div className='mt-10 p-6 bg-white rounded-lg shadow-md'>
+                <h2 className='text-2xl font-semibold mb-4'>Details</h2>
+                <p className='text-gray-700'><span className='font-semibold'>Product Size:</span> {item.productSize}</p>
+                <p className='text-gray-700'><span className='font-semibold'>Brand:</span> {item.brand}</p>
+                <p className='text-gray-700'><span className='font-semibold'>Character:</span> {item.character}</p>
             </div>
+        </div>
         </>
     );
-    
+
 }

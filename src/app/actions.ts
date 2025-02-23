@@ -1,7 +1,9 @@
 'use server'
 
 import { CheckoutFormValues } from "@/components/shared/constants/form-checkout";
-import { OrderStatus, PrismaClient } from "@prisma/client"
+import { getUserSession } from "@/components/shared/get-user";
+import { OrderStatus, Prisma, PrismaClient } from "@prisma/client"
+import { hashSync } from "bcrypt";
 import { cookies } from "next/headers";
 const prisma = new PrismaClient();
 
@@ -19,15 +21,15 @@ export async function createOrder(data: CheckoutFormValues) {
             where: {
                 token: cartToken,
             },
-            include:{
-                items:{
-                    include:{
-                        item:true
+            include: {
+                items: {
+                    include: {
+                        item: true
                     }
                 }
             }
         })
-        if(!userCart){
+        if (!userCart) {
             throw Error('Корзина не найдена');
         }
 
@@ -47,24 +49,81 @@ export async function createOrder(data: CheckoutFormValues) {
         })
 
         await prisma.cart.update({
-            where:{
+            where: {
                 id: userCart.id
             },
-            data:{
+            data: {
                 totalAmount: 0,
             }
         })
 
         await prisma.cartItem.deleteMany({
-            where:{
-                cartId:userCart.id
+            where: {
+                cartId: userCart.id
             }
         })
 
-        return 
 
     } catch (error) {
         console.log('CREATER_ORDER', error)
+    }
+
+}
+
+
+export async function updateUserInfo(body: Prisma.UserUpdateInput) {
+    try {
+        const currentUser = await getUserSession();
+
+        if (!currentUser) {
+            return 'Пользователь не найден';
+        }
+
+        const findUser = prisma.user.findFirst({
+            where: {
+                email: currentUser.email as string 
+            }
+        })
+
+        await prisma.user.update({
+            where: {
+                email: currentUser.email as string
+            },
+            data: {
+                name: body.name,
+                email: body.email,
+                password: body.password ? hashSync(body.password as string, 10) : '',
+            }
+        })
+    } catch (error) {
+        console.log('[UPDATE-USER]', error)
+    }
+}
+
+
+export async function registerUser(body: Prisma.UserCreateInput) {
+    try {
+
+        const user =  await prisma.user.findFirst({
+            where: {
+                email: body.email,
+            },
+        });
+
+        if (user) {
+            throw new Error('Пользователь уже существует');
+          }
+
+       await prisma.user.create({
+            data:{
+                name: body.name,
+                email: body.email,
+                password: hashSync(body.password, 10),
+            }
+        })
+
+    } catch (error) {
+        console.log('[REGISTER]-USER', error)
     }
 
 }

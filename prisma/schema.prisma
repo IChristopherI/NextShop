@@ -15,7 +15,7 @@ generator client {
 
 model User {
   id Int @id @default(autoincrement())
-  name     String @unique
+  name String 
   email    String @unique
   password String
 
@@ -51,6 +51,13 @@ model Item {
   name       String
   price      Int
   imageUrl String?
+
+  articule Int?
+  imagePackage String[]
+  productSize String?
+  detail String?
+  brand String?
+  character String?
 
 
   category   Category @relation(fields: [categoryId], references: [id])
