@@ -1,7 +1,6 @@
-import { updateCartItemTotal } from "@/lib/update-cart-item-total-amount";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/prisma-client";
+import { updateCartItemTotal } from "@/src/lib/update-cart-item-total-amount";
 import { NextRequest, NextResponse } from "next/server";
-const prisma = new PrismaClient();
 
 export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
     try {

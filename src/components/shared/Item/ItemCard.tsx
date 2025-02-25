@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../../ui/button';
+import { Button } from '../../ui/button';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
@@ -17,7 +17,7 @@ interface ItemCardProps {
 const ItemCard: React.FC<ItemCardProps> = ({ id, name, price, imageUrl, className, onSubmit, loading }) => {
     return (
         <>
-            <div className="flex flex-col p-2 border border-gray-200 rounded-2xl shadow-lg w-[300px] bg-white hover:shadow-xl transition-shadow duration-300">
+            <div className="flex flex-col p-2 border  rounded-2xl shadow-lg w-[300px]  hover:shadow-xl transition-shadow duration-300">
                 <Link href={`/product/${id}`} className="block">
                     <div className="overflow-hidden rounded-lg mb-4">
                         <img
@@ -26,17 +26,17 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, name, price, imageUrl, classNam
                             alt="ProductImage"
                         />
                     </div>
-                    <h1 className="text-md  text-gray-700 mb-2 line-clamp-1">{name}</h1>
+                    <h1 className="text-md  mb-2 line-clamp-1">{name}</h1>
                 </Link>
                 <div className="flex justify-between items-center mt-auto">
                     <Button
-                        loading={loading}
+                        variant={'secondary'}
                         onClick={onSubmit}
-                        className="flex items-center gap-2  text-white px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition duration-300" >
+                        className="flex items-center gap-2   px-4 py-2 rounded-lg hover:bg-slate-400 transition duration-300" >
                         <Plus className="w-5 h-5" />
                         <p>Добавить</p>
                     </Button>
-                    <span className="text-xl font-bold text-gray-900">{price} $</span>
+                    <span className="text-xl font-bold ">{price} $</span>
                 </div>
             </div>
         </>

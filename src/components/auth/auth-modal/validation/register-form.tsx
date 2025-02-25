@@ -2,10 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { RegisterFormSchema, TRegisterFormSchema } from './schema';
-import { registerUser } from '@/app/actions';
 import toast from 'react-hot-toast';
-import { Button } from '@/components/ui/button';
-import FormInput from '@/components/shared/form-input';
+import FormInput from '@/src/components/shared/form-input';
+import { registerUser } from '@/src/app/actions';
+import { Button } from '@/src/components/ui/button';
+
 
 interface Props  {
     className?: string;

@@ -1,10 +1,9 @@
 import NextAuth, { AuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { PrismaClient } from "@prisma/client"
 import { compare, hashSync } from "bcrypt";
+import { prisma } from "@/prisma/prisma-client";
 
-const prisma = new PrismaClient();
 export const authOptions: AuthOptions = {
   providers: [
     GithubProvider({

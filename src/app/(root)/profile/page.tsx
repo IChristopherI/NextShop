@@ -1,15 +1,14 @@
 
 import { redirect } from 'next/navigation';
 import React from 'react';
-import { getUserSession } from '../../../components/shared/get-user';
-import ProfileForm from '@/components/shared/ProfileForm/profile-form';
-import { PrismaClient } from '@prisma/client';
+import { getUserSession } from '../../../components/shared/ProfileForm/get-user';
+import ProfileForm from '@/src/components/shared/ProfileForm/profile-form';
+import { prisma } from '@/prisma/prisma-client';
 
 interface Props {
     className?: string;
 }
 const ProfilePage: React.FC<Props> = async ({ className }) => {
-    const prisma = new PrismaClient();
     const session = await getUserSession();
 
     if (!session) {

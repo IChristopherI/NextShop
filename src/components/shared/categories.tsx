@@ -1,5 +1,5 @@
 'use client';
-import { cn } from '@/lib/utils';
+import { cn } from '@/src/lib/utils';
 import { Category } from '@prisma/client';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -26,7 +26,7 @@ const Categories: React.FC<CategoriesProps> = ({ category }) => {
     }
     return (
         <>
-            <div className='inline-flex items-center gap-3  p-1    '>
+            <div className='inline-flex items-center gap-3 p-1'>
                 {category.map((name, index) => (
                     <Link href={`/#${name.name}`} key={index} className={cn('flex items-center font-bold h-8  px-5',
                         activeIndex === index ? ' text-primary' : ' text-black')}>

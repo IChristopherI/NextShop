@@ -1,14 +1,12 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import crypto from 'crypto'
-import { CreateCartItem } from "@/components/shared/services/Cart_dto";
 import { findOrCreateCart } from "../../../lib/find-or-create-cart";
-import { updateCartItemTotal } from "@/lib/update-cart-item-total-amount";
+import { CreateCartItem } from "@/src/components/shared/services/Cart_dto";
+import { updateCartItemTotal } from "@/src/lib/update-cart-item-total-amount";
+import { prisma } from "@/prisma/prisma-client";
 
 export async function GET(req: NextRequest) {
-    const prisma = new PrismaClient();
     try {
-        const userId = 1;
         const token = req.cookies.get('cartToken')?.value;
         if (!token) {
             return NextResponse.json({ items: [], total: 0 });
@@ -18,7 +16,6 @@ export async function GET(req: NextRequest) {
             where: {
                 OR: [
                     { token },
-                    { userId },
                 ]
             },
             include: {
@@ -43,7 +40,6 @@ export async function GET(req: NextRequest) {
 
 
 export async function POST(req: NextRequest) {
-    const prisma = new PrismaClient();
     try {
         let token = req.cookies.get('cartToken')?.value;
 

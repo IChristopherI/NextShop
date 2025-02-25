@@ -1,11 +1,11 @@
 'use server'
 
-import { CheckoutFormValues } from "@/components/shared/constants/form-checkout";
-import { getUserSession } from "@/components/shared/get-user";
-import { OrderStatus, Prisma, PrismaClient } from "@prisma/client"
+import { OrderStatus, Prisma } from "@prisma/client"
 import { hashSync } from "bcrypt";
 import { cookies } from "next/headers";
-const prisma = new PrismaClient();
+import { CheckoutFormValues } from "../components/shared/constants/form-checkout";
+import { getUserSession } from "../components/shared/ProfileForm/get-user";
+import { prisma } from "@/prisma/prisma-client";
 
 export async function createOrder(data: CheckoutFormValues) {
     try {

@@ -1,10 +1,10 @@
-import { Dialog, DialogContent, DialogFooter, DialogHeader } from '@/components/ui/dialog';
 
 import React, { useState } from 'react';
 import LoginForm from './validation/login-form';
 import { DialogTitle } from '@radix-ui/react-dialog';
 import RegisterForm from './validation/register-form';
-import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent } from '../../ui/dialog';
+import { Button } from '../../ui/button';
 
 interface Props {
   open: boolean;

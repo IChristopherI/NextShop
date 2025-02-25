@@ -1,15 +1,7 @@
-import { Cart, CartItem, Item } from "@prisma/client";
-
-export type CartItemDTO = CartItem & {
-    item: Item;
-};
-
-export interface CartDTO extends Cart {
-    items: CartItemDTO[];
-};
+import { CartDTO } from "../components/shared/services/Cart_dto";
 
 export type CartStateItem = {
-    disabled: boolean | undefined;
+    disabled?: boolean | undefined;
     name: string;
     id: number;
     imageUrl: string | null;

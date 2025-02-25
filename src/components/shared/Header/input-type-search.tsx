@@ -1,13 +1,13 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { Item } from '@prisma/client';
 import { Search } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import { useClickAway, useDebounce } from 'react-use';
-import { search } from '../../services/search';
+import { search } from '../services/search';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { cn } from '@/src/lib/utils';
 
 interface InputSearchProps {
     className?: string;

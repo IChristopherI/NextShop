@@ -5,7 +5,7 @@ import CartItemInfo from '../cart-item-info';
 import { CartItemPrice } from '../cart-item-price';
 import CountButton from '../../quantity-count-button';
 import { TrashIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/src/lib/utils';
 
 interface Props extends CartItemProps {
   onClickCountButton?: (type: 'plus' | 'minus') => void;

@@ -1,15 +1,18 @@
 'use client'
 
-import { cn } from '@/lib/utils';
-import { Button } from "@/components/ui/button";
 import React from 'react';
 import { ShoppingCart, User } from 'lucide-react';
 import Link from 'next/link';
 import InputSearch from './input-type-search';
-import CartDrawer from '../../cart-item-details/CartDrawer/cart-drawer';
-import { useCart } from '@/components/hooks/use-cart';
-import AuthModal from '@/components/auth/auth-modal/auth-modal';
+import CartDrawer from '../cart-item-details/CartDrawer/cart-drawer';
+
 import { useSession } from 'next-auth/react';
+import { useTheme } from 'next-themes';
+import { ModeToggle } from '../ThemeButton';
+import { useCart } from '@/src/components/hooks/use-cart';
+import { cn } from '@/src/lib/utils';
+import AuthModal from '@/src/components/auth/auth-modal/auth-modal';
+import { Button } from '@/src/components/ui/button';
 
 
 interface HeaderProps {
@@ -21,11 +24,11 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     const { data: session } = useSession()
     const { items, totalAmount } = useCart();
     const [openModal, setOpenModal] = React.useState(false)
-
+    const { theme, setTheme } = useTheme()
 
     return (
         <>
-            <header className={cn('border border-b', className)}>
+            <header className={cn('border border-b ', className)}>
                 <div className='flex items-center justify-between py-5 mr-auto ml-auto max-w-7xl'>
                     {/*Logo */}
                     <Link href="/">
@@ -65,6 +68,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
                                 </Button>
                             </CartDrawer>
                         </div>
+                          <ModeToggle />
                     </div>
                 </div>
             </header>

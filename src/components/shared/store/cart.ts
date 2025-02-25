@@ -1,20 +1,18 @@
 import { create } from "zustand";
-import { CartStateItem, getCartDetail } from "@/lib/get-cart-detail";
 import { addCartItem, deleteCartItem, getCart, updateCartItemQuantity } from "../services/cart";
 import { CreateCartItem } from "../services/Cart_dto";
+import { CartStateItem, getCartDetail } from "@/src/lib/get-cart-detail";
 
 export interface CartState {
     loading: boolean;
     error: boolean;
     totalAmount: number;
     items: CartStateItem[];
-
     
     fetchCartItems: () => Promise<void>;
     updateCartItemQuantity:(id:number, quantity:number) => Promise<void>
     removeCartItem: (id:number) => Promise<void>;
     addOnclickCartItem:(values: CreateCartItem) => Promise<void>;
-
 
 }
 

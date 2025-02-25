@@ -3,8 +3,8 @@
 import React from 'react';
 import ItemCard from './ItemCard';
 import { Item } from '@prisma/client';
-import { useCart } from '@/components/hooks/use-cart';
 import toast from 'react-hot-toast';
+import { useCart } from '@/src/components/hooks/use-cart';
 
 interface ProductListProps  {
     items: Item[],

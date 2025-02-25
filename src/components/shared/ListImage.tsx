@@ -14,7 +14,6 @@ const ArrayImage: React.FC<Props> = ({ className, item }) => {
 
     const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
 
-
     const prevNext = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % item.imagePackage.length);
     };
@@ -27,8 +26,8 @@ const ArrayImage: React.FC<Props> = ({ className, item }) => {
         <div>
                 <img className='  rounded-lg shadow-md' src={item.imagePackage[currentImageIndex] ?? ''} alt={item.name} />
                 <div className='flex justify-between'>
-                    <Button variant='ghost' onClick={prevPrevious}> <ArrowLeft /></Button>
-                    <Button variant='ghost' onClick={prevNext}><ArrowRight /> </Button>
+                    <Button variant='ghost' onClick={prevPrevious}><ArrowLeft/></Button>
+                    <Button variant='ghost' onClick={prevNext}><ArrowRight/></Button>
                 </div>
         </div>
     );

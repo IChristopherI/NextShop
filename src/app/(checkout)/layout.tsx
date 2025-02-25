@@ -1,4 +1,4 @@
-import Header from '@/components/shared/MainComponent/Header/header';
+import Header from '@/src/components/shared/Header/header';
 import { Metadata } from 'next';
 import React from 'react';
 

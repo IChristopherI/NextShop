@@ -1,9 +1,10 @@
-import { PrismaClient } from '@prisma/client'
 import { hashSync } from 'bcrypt';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
+  try{
     await prisma.cartItem.deleteMany({});
     await prisma.cart.deleteMany({});
     await prisma.item.deleteMany({});
@@ -13,17 +14,17 @@ async function main() {
     await prisma.user.createMany({
         data: [
             {
-                id: 1,
+                id:1,
                 name: 'test user',
                 email: 'test@gmail.com',
                 password: hashSync("12345", 10),
                 role: 'USER',
             },
             {
-                id: 2,
+                id:2,
                 name: 'test admin',
                 email: 'testAdmin@gmail.com',
-                password: hashSync("ADMINPASS", 10),
+                password: hashSync("12345", 10),
                 role: 'ADMIN',
             },
         ]
@@ -263,30 +264,26 @@ async function main() {
             },
         ]
     })
-    await prisma.cartItem.createMany({
-        data: [
+    await prisma.cartItem.create({
+        data: 
             {
                 
                 cartId: 1,
                 itemId: 61,
-                quantity: 1,
-            },
-            {
-                cartId: 1,
-                itemId: 62,
-                quantity: 1,
-            },
-
-        ]
+                quantity: 3,
+            }
     })
+  } catch(error){
+    console.log(error)
+  }
 }
 
 main()
-    .then(async () => {
-        await prisma.$disconnect()
-    })
-    .catch(async (e) => {
-        console.error(e)
-        await prisma.$disconnect()
-        process.exit(1)
-    })
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });

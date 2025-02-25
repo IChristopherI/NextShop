@@ -1,7 +1,7 @@
 import React from 'react';
 import WhiteBlock from './white-block';
-import { Textarea } from '@/components/ui/textarea';
 import FormInput from '../form-input';
+import { Textarea } from '../../ui/textarea';
 
 interface Props {
   className?: string;

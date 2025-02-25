@@ -1,8 +1,9 @@
 import React from 'react';
 import WhiteBlock from './white-block';
-import { Button } from '@/components/ui/button';
-import { useCart } from '@/components/hooks/use-cart';
+
 import { Package, Truck } from 'lucide-react';
+import { useCart } from '../../hooks/use-cart';
+import { Button } from '../../ui/button';
 
 interface Props {
   className?: string;

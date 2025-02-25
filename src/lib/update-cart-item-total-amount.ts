@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/prisma-client";
 import { CalcTotalCart } from "./calculate-cart-totalprice";
 
 export const updateCartItemTotal = async (token:string) =>{
-    const prisma = new PrismaClient();
 
     const userCart = await prisma.cart.findFirst({
         where:{

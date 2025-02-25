@@ -4,12 +4,12 @@ import React from 'react';
 import FormInput from '../form-input';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { RegisterFormSchema, TRegisterFormSchema } from '@/components/auth/auth-modal/validation/schema';
 import { User } from '@prisma/client';
 import toast from 'react-hot-toast';
-import { Button } from '@/components/ui/button';
 import { signOut } from 'next-auth/react';
-import { updateUserInfo } from '@/app/actions';
+import { RegisterFormSchema, TRegisterFormSchema } from '../../auth/auth-modal/validation/schema';
+import { updateUserInfo } from '@/src/app/actions';
+import { Button } from '../../ui/button';
 
 interface Props {
   className?: string;
@@ -50,7 +50,7 @@ const ProfileForm: React.FC<Props> = ({ className, data }) => {
   }
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-8 rounded-2xl shadow-md mt-10">
+    <div className="max-w-lg mx-auto p-8 rounded-2xl shadow-md mt-10">
       <h1 className="text-2xl font-semibold mb-6 text-center">Редактировать профиль</h1>
       
       <FormProvider {...form}>
