@@ -13,13 +13,8 @@ import WhiteBlock from '@/src/components/shared/Checkout/white-block';
 import CheckoutPersonal from '@/src/components/shared/Checkout/checkout-personal';
 import CheckoutTotal from '@/src/components/shared/Checkout/ckeckout-total';
 import CheckoutItem from '@/src/components/shared/Checkout/Checkout-item';
-import { cn } from '@/src/lib/utils';
 
-interface Props {
-    className?: string;
-}
-
-const CheckoutMain: React.FC<Props> = ({ className }) => {
+const CheckoutMain: React.FC = () => {
     const { items, updateCartItemQuantity, removeCartItem } = useCart();
 
     const onClickCountButton = (id: number, quantity: number, type: 'minus' | 'plus') => {
@@ -44,7 +39,7 @@ const CheckoutMain: React.FC<Props> = ({ className }) => {
     }
 
     return (
-        <div className={cn('mt-5  flex justify-center', className)}>
+        <div className='mt-5 flex justify-center'>
             <FormProvider {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <div className='flex gap-3'>

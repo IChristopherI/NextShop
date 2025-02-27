@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-const CheckoutAddress: React.FC<Props> = ({ className }) => {
+const CheckoutAddress: React.FC<Props> = () => {
   return (
     <div>
      <WhiteBlock title='3. Адрес доставки'>

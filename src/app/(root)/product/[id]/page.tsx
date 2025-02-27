@@ -2,14 +2,16 @@ import React from 'react';
 import ArrayImage from '@/src/components/shared/ListImage';
 import { prisma } from '@/prisma/prisma-client';
 import AddCartItemF from '@/src/components/shared/AddCartItem';
+import { notFound } from 'next/navigation';
 
 export default async function Page({ params: { id } }: { params: { id: string } }) {
     const item = await prisma.item.findFirst({
         where: { id: Number(id) },
+
     });
 
     if (!item) {
-        return <div className='text-center text-2xl mt-10'>Product not found</div>;
+        return notFound();
     }
 
     return (

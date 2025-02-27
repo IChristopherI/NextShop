@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface Props {
-  className?: string;
-}
-
-const NotAuthPage: React.FC<Props> = () => {
+const NotAuthPage: React.FC = () => {
   return (
     <div className='flex flex-col justify-center items-center mt-40 '>
      <h1>Доступ запрещен</h1>

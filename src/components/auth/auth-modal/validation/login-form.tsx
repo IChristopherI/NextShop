@@ -10,10 +10,9 @@ import { Button } from '@/src/components/ui/button';
 
 interface Props {
   className?: string;
-  onClose?: VoidFunction;
 }
 
-const LoginForm: React.FC<Props> = ({ onClose }) => {
+const LoginForm: React.FC<Props> = () => {
 
   const form = useForm<TLoginFormSchema>({
     resolver: zodResolver(LoginFormSchema),
@@ -27,13 +26,12 @@ const LoginForm: React.FC<Props> = ({ onClose }) => {
     try {
       const responce = await signIn('credentials', { ...data, redirect: false })
 
-      {responce?.ok ? (
-          toast.success('Вы успешно вошли в аккаунт')
-        ) : (
-          toast.error('Не удалось войти в аккаунт')
-        )
+      if (responce?.ok) {
+        toast.success('Вы успешно вошли в аккаунт');
+      } else {
+        toast.error('Не удалось войти в аккаунт');
       }
-        onClose?.();
+      
     } catch (error) {
       console.log('[LOGIN] Error', error)
       return toast.error('CATCH-ERORR-VALIDATION')

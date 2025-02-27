@@ -7,7 +7,7 @@ interface Props {
     className?: string;
 }
 
-const CartItemInfo: React.FC<Props> = ({ name, className }) => {
+const CartItemInfo: React.FC<Props> = ({ name }) => {
     return (<h2 className=''>{name}</h2>);
 };
 

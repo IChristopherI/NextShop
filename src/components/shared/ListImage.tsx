@@ -4,6 +4,7 @@ import { Item } from '@prisma/client';
 import React from 'react';
 import { Button } from '../ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 interface Props {
     item: Item;
@@ -24,7 +25,7 @@ const ArrayImage: React.FC<Props> = ({ item }) => {
 
     return (
         <div>
-                <img className='  rounded-lg shadow-md' src={item.imagePackage[currentImageIndex] ?? ''} alt={item.name} />
+                <Image className='rounded-lg shadow-md' src={item.imagePackage[currentImageIndex] ?? ''} width={200} height={200} alt={item.name} />
                 <div className='flex justify-between'>
                     <Button variant='ghost' onClick={prevPrevious}><ArrowLeft/></Button>
                     <Button variant='ghost' onClick={prevNext}><ArrowRight/></Button>

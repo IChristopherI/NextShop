@@ -6,7 +6,7 @@ interface Props {
     className?: string;
 }
 
-const CheckoutPersonal: React.FC<Props> = ({ className }) => {
+const CheckoutPersonal: React.FC<Props> = () => {
     return (
             <WhiteBlock title='2. Персональная информация'>
                 <div className='grid grid-cols-2 gap-2 '>

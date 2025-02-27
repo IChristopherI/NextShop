@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '../../ui/button';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface ItemCardProps {
     id: string;
@@ -20,10 +21,12 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, name, price, imageUrl, onSubmit
             <div className="flex flex-col p-2 border  rounded-2xl shadow-lg w-[300px]  hover:shadow-xl transition-shadow duration-300">
                 <Link href={`/product/${id}`} className="block">
                     <div className="overflow-hidden rounded-lg mb-4">
-                        <img
+                        <Image
                             className=" object-cover transition-transform duration-300 hover:scale-105"
                             src={imageUrl}
                             alt="ProductImage"
+                            width={100} 
+                            height={100} 
                         />
                     </div>
                     <h1 className="text-md  mb-2 line-clamp-1">{name}</h1>

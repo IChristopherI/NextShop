@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '../../../ui/button';
 import { useCart } from '../../../hooks/use-cart';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
@@ -63,7 +64,7 @@ const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                             </div>
                         ) : (
                             <div className="flex flex-col items-center justify-center p-8 gap-2  shadow-md rounded-xl  mb-auto mt-auto">
-                                <img src='https://cdn-icons-png.flaticon.com/512/11329/11329060.png' alt="Пустая корзина" className='w-32' />
+                                <Image src='https://cdn-icons-png.flaticon.com/512/11329/11329060.png' alt="Пустая корзина" className='w-32' />
                                 <h1 className='font-bold text-lg'>Ваша корзина пуста</h1>
                                 <p className="text-gray-500 text-center mt-2">
                                     Добавьте товары в корзину, чтобы оформить заказ.

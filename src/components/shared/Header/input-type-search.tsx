@@ -1,5 +1,5 @@
 'use client';
-
+import Image from 'next/image'
 import { Item } from '@prisma/client';
 import { Search } from 'lucide-react';
 import React, { useRef, useState } from 'react';
@@ -53,7 +53,8 @@ const InputSearch: React.FC<InputSearchProps> = () => {
                 {items.map((item) => (
                     <Link href={`/product/${item.id}`} key={item.id}>
                         <div className='flex  items-center gap-5 mb-5 hover:bg-slate-100'>
-                            <img className='w-[50px]  rounded-sm' src={item.imageUrl ?? ''} />
+                            <Image className='w-[50px]  rounded-sm' src={item.imageUrl ?? ''}    width={100} 
+          height={100} alt='input-search'/>
                             <p>{item.name}</p>
                         </div>
                     </Link>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { CloseModal } from '../CloseModal';
 import { Button } from '../../ui/button';
+import Image from 'next/image';
 
 interface Props {
   id: string;
@@ -16,7 +17,8 @@ const ProductForm: React.FC<Props> = ({  imageUrl, name}) => {
     <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
       <div className='bg-white rounded-lg p-6 w-full max-w-3xl shadow-lg flex'>
         <div className='w-1/2 flex justify-center items-center'>
-          <img className='w-[300px] h-auto rounded' src={imageUrl || ''} alt={name} />
+          <Image className='w-[300px] h-auto rounded'   width={100} 
+          height={100}  src={imageUrl || ''} alt={name} />
         </div>
         <div className='w-[600px] p-4 flex flex-col justify-between'>
           <div>

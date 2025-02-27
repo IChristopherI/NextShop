@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
                     <Link href="/">
                         <div className='flex items-center gap-2'>
                             <div>
-                                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/SAKURA_internet_Logo.svg/2560px-SAKURA_internet_Logo.svg.png' className='w-[200px]' />
+                                <h1>Logo</h1>
                             </div>
                         </div>
                     </Link>
