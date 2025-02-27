@@ -16,7 +16,7 @@ interface Props {
   data: User;
 }
 
-const ProfileForm: React.FC<Props> = ({ className, data }) => {
+const ProfileForm: React.FC<Props> = ({ data }) => {
 
   const form = useForm<TRegisterFormSchema>({
     resolver: zodResolver(RegisterFormSchema),

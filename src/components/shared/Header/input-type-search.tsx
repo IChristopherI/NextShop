@@ -6,14 +6,13 @@ import React, { useRef, useState } from 'react';
 import { useClickAway, useDebounce } from 'react-use';
 import { search } from '../services/search';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 import { cn } from '@/src/lib/utils';
 
 interface InputSearchProps {
     className?: string;
 }
 
-const InputSearch: React.FC<InputSearchProps> = ({ className }) => {
+const InputSearch: React.FC<InputSearchProps> = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [items, setItems] = useState<Item[]>([]);
 
@@ -34,8 +33,6 @@ const InputSearch: React.FC<InputSearchProps> = ({ className }) => {
     return (
         <>
             {focused && <div className='fixed top-0 left-0 bottom-0 right-0 bg-black/20 z-20'>
-
-
 
             </div>}
             <div ref={ref} className=' relative flex items-center gap-2 z-30'>

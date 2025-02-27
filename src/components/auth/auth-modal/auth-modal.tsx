@@ -12,7 +12,7 @@ interface Props {
   onClose: () => void;
 }
 
-const AuthModal: React.FC<Props> = ({ className, open, onClose }) => {
+const AuthModal: React.FC<Props> = ({open, onClose }) => {
 
   const [type, setType] = useState<'login' | 'register'>('login');
 

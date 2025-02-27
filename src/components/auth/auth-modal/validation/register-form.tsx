@@ -12,7 +12,7 @@ interface Props  {
     className?: string;
 }
 
-const RegisterForm: React.FC<Props> = ({ className }) => {
+const RegisterForm: React.FC<Props> = () => {
     const form = useForm<TRegisterFormSchema>({
         resolver: zodResolver(RegisterFormSchema),
         defaultValues: {

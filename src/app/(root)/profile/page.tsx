@@ -8,7 +8,7 @@ import { prisma } from '@/prisma/prisma-client';
 interface Props {
     className?: string;
 }
-const ProfilePage: React.FC<Props> = async ({ className }) => {
+const ProfilePage: React.FC<Props> = async () => {
     const session = await getUserSession();
 
     if (!session) {

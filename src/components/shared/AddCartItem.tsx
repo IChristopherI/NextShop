@@ -11,7 +11,7 @@ interface Props {
     className?: string;
 }
 
-const AddCartItemF: React.FC<Props> = ({ className, item }) => {
+const AddCartItemF: React.FC<Props> = ({ item }) => {
     const { addOnclickCartItem } = useCart();
     const onSubmit = async (item: Item) => {
         try {

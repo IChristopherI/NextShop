@@ -10,7 +10,7 @@ interface Props {
     className?: string;
 }
 
-const ArrayImage: React.FC<Props> = ({ className, item }) => {
+const ArrayImage: React.FC<Props> = ({ item }) => {
 
     const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
 

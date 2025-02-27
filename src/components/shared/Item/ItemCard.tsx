@@ -14,7 +14,7 @@ interface ItemCardProps {
     onSubmit?: () => Promise<void>;
 }
 
-const ItemCard: React.FC<ItemCardProps> = ({ id, name, price, imageUrl, className, onSubmit, loading }) => {
+const ItemCard: React.FC<ItemCardProps> = ({ id, name, price, imageUrl, onSubmit }) => {
     return (
         <>
             <div className="flex flex-col p-2 border  rounded-2xl shadow-lg w-[300px]  hover:shadow-xl transition-shadow duration-300">

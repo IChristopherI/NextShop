@@ -13,7 +13,7 @@ interface Props {
   onClose?: VoidFunction;
 }
 
-const LoginForm: React.FC<Props> = ({ className, onClose }) => {
+const LoginForm: React.FC<Props> = ({ onClose }) => {
 
   const form = useForm<TLoginFormSchema>({
     resolver: zodResolver(LoginFormSchema),

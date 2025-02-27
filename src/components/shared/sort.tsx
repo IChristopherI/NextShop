@@ -5,7 +5,7 @@ interface SortProps {
     className?: string;
 }
 
-const Sort: React.FC<SortProps> = ({ className }) => {
+const Sort: React.FC<SortProps> = () => {
     return (
         <div className='flex gap-2'>
             <ArrowDownUp />

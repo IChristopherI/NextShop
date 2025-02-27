@@ -33,7 +33,7 @@ export async function createOrder(data: CheckoutFormValues) {
             throw Error('Корзина не найдена');
         }
 
-        const order = await prisma.order.create({
+        await prisma.order.create({
             data: {
                 token: cartToken,
                 fullName: data.firstName + ' ' + data.lastName,
@@ -79,7 +79,7 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
             return 'Пользователь не найден';
         }
 
-        const findUser = prisma.user.findFirst({
+        await prisma.user.findFirst({
             where: {
                 email: currentUser.email as string 
             }

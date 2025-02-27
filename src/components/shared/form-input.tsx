@@ -9,12 +9,11 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
 
-const FormInput: React.FC<Props> = ({ className, name, ...props }) => {
+const FormInput: React.FC<Props> = ({ name, ...props }) => {
 
   const {
     register,
     formState: { errors },
-    watch,
     setValue,
   } = useFormContext();
   

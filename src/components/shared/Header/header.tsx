@@ -7,7 +7,6 @@ import InputSearch from './input-type-search';
 import CartDrawer from '../cart-item-details/CartDrawer/cart-drawer';
 
 import { useSession } from 'next-auth/react';
-import { useTheme } from 'next-themes';
 import { ModeToggle } from '../ThemeButton';
 import { useCart } from '@/src/components/hooks/use-cart';
 import { cn } from '@/src/lib/utils';
@@ -24,7 +23,6 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     const { data: session } = useSession()
     const { items, totalAmount } = useCart();
     const [openModal, setOpenModal] = React.useState(false)
-    const { theme, setTheme } = useTheme()
 
     return (
         <>
