@@ -28,7 +28,7 @@ const ProductList: React.FC<ProductListProps> = ({  items }) => {
             <div className='responsive-grid gap-5 mt-5 mb-5  '> 
                 {items.map((item) => (
                     <ItemCard
-                    id={item.id.toString()}
+                    id={item.id}
                     key={item.id}
                     name={item.name}
                     imageUrl={item.imageUrl ?? ''}

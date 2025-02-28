@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 interface ItemCardProps {
-    id: string;
+    id: number;
     name: string;
     price: number;
     imageUrl: string;
@@ -25,8 +25,8 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, name, price, imageUrl, onSubmit
                             className=" object-cover transition-transform duration-300 hover:scale-105"
                             src={imageUrl}
                             alt="ProductImage"
-                            width={100} 
-                            height={100} 
+                            width={300} 
+                            height={300}
                         />
                     </div>
                     <h1 className="text-md  mb-2 line-clamp-1">{name}</h1>

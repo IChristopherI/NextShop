@@ -19,7 +19,7 @@ interface HeaderProps {
 
 }
 
-export const Header: React.FC<HeaderProps> = ({ className }) => {
+const Header: React.FC<HeaderProps> = ({ className }) => {
     const { data: session } = useSession()
     const { items, totalAmount } = useCart();
     const [openModal, setOpenModal] = React.useState(false)

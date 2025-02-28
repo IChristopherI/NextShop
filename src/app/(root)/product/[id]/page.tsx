@@ -4,9 +4,16 @@ import { prisma } from '@/prisma/prisma-client';
 import AddCartItemF from '@/src/components/shared/AddCartItem';
 import { notFound } from 'next/navigation';
 
-export default async function Page({ params: { id } }: { params: { id: string } }) {
+
+
+
+export default async function ProductPage(context: { params: Promise<{ id: string }> }) {
+    const { id } = await context.params;
+    const ItemId = Number(id);
     const item = await prisma.item.findFirst({
-        where: { id: Number(id) },
+        where: {
+            id: ItemId
+        },
 
     });
 
@@ -43,9 +50,9 @@ export default async function Page({ params: { id } }: { params: { id: string } 
                     </div>
 
                     <div className='flex items-center justify-between mb-10 p-2 border rounded-lg shadow-sm'>
-                            <p className='text-4xl font-bold '>{item.price} $</p>
-                            <AddCartItemF item={item} />
-                        </div>
+                        <p className='text-4xl font-bold '>{item.price} $</p>
+                        <AddCartItemF item={item} />
+                    </div>
                 </div>
             </div>
 

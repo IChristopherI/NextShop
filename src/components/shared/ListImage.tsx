@@ -25,7 +25,7 @@ const ArrayImage: React.FC<Props> = ({ item }) => {
 
     return (
         <div>
-                <Image className='rounded-lg shadow-md' src={item.imagePackage[currentImageIndex] ?? ''} width={200} height={200} alt={item.name} />
+                <Image className='rounded-lg shadow-md' src={item.imagePackage[currentImageIndex] ?? ''} width={500} height={500} alt={item.name} />
                 <div className='flex justify-between'>
                     <Button variant='ghost' onClick={prevPrevious}><ArrowLeft/></Button>
                     <Button variant='ghost' onClick={prevNext}><ArrowRight/></Button>

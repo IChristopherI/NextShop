@@ -5,10 +5,7 @@ import { getUserSession } from '../../../components/shared/ProfileForm/get-user'
 import ProfileForm from '@/src/components/shared/ProfileForm/profile-form';
 import { prisma } from '@/prisma/prisma-client';
 
-interface Props {
-    className?: string;
-}
-const ProfilePage: React.FC<Props> = async () => {
+const ProfilePage: React.FC = async () => {
     const session = await getUserSession();
 
     if (!session) {

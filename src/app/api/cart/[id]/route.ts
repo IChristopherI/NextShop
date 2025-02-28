@@ -2,11 +2,12 @@ import { prisma } from "@/prisma/prisma-client";
 import { updateCartItemTotal } from "@/src/lib/update-cart-item-total-amount";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
     try {
-        const id = Number(params.id);
-        const token = req.cookies.get('cartToken')?.value;
+        const { id } = await context.params;
+        const cartItemId = Number(id);
         const data = (await req.json()) as { quantity: number };
+        const token =  req.cookies.get('cartToken')?.value;
 
         if (!token) {
             return NextResponse.json({ error: 'Не удалось найти токен' });
@@ -14,7 +15,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
         const cartItem = await prisma.cartItem.findFirst({
             where: {
-                id
+                id:cartItemId
             },
 
         })
@@ -25,7 +26,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
           await prisma.cartItem.update({
             where: {
-                id
+                id:cartItemId
             },
             data: {
                 quantity: data.quantity,
@@ -41,31 +42,29 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 }
 
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: { params: Promise<{ id: string }> }) {
     try {
+        const { id } = await context.params;
+        const cartItemId = Number(id);
         const token = req.cookies.get('cartToken')?.value;
-
+        
         if (!token) {
             return NextResponse.json({ error: 'Не удалось найти токен' });
         }
         const cartItem = await prisma.cartItem.findFirst({
-            where: {
-                id: Number(params.id)
-            }
+            where: {id:cartItemId}
         })
         if (!cartItem) {
             return NextResponse.json({ error: 'Товары в корзине не найдены' })
         }
 
        await prisma.cartItem.delete({
-            where: {
-                id: Number(params.id)
-            }
+            where: {id:cartItemId}
         })
 
            const updatedCartPrice = await updateCartItemTotal(token);
-              return NextResponse.json(updatedCartPrice);
 
+        return NextResponse.json(updatedCartPrice);
     } catch (e) {
         console.log('[CART_PATCH] Server error', e);
         return NextResponse.json({ message: 'Не удалось удалить товар' }, { status: 500 });
